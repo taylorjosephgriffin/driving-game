@@ -1,9 +1,10 @@
 class Car {
-  constructor($img, speed, direction, location) {
+  constructor($img, speed, direction, location, isRunning) {
     this.$img = $img
     this.speed = speed
     this.direction = direction
     this.location = location
+    this.isRunning = isRunning
   }
   turn(direction) {
     this.direction = direction
@@ -35,16 +36,19 @@ class Car {
   }
   start() {
     const car = this
-    setInterval(function () {
+    this.interval = setInterval(function () {
       car.move()
     }, 16)
+  }
+  stop() {
+    clearInterval(this.interval)
   }
 }
 
 const $mustang = document.createElement('img')
 $mustang.setAttribute('src', 'images/car1.png')
 
-let mustang = new Car($mustang, 5, 'east', [0, 0])
+let mustang = new Car($mustang, 5, 'east', [0, 0], false)
 mustang.$img.setAttribute('style', 'position: relative')
 
 $mustang.classList.add(mustang.direction)
@@ -72,7 +76,12 @@ document.body.addEventListener('keydown', function (event) {
 
 document.body.addEventListener('keydown', function (event) {
   const key = event.keyCode
-  if (key === 32) {
+  if (key === 32 && !mustang.isRunning) {
+    mustang.isRunning = true
     mustang.start()
+  }
+  else if (key === 32 && mustang.isRunning) {
+    mustang.isRunning = false
+    mustang.stop()
   }
 })
