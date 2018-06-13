@@ -1,5 +1,6 @@
 const $mustang = document.createElement('img')
 $mustang.setAttribute('src', 'images/car1.png')
+$mustang.classList.add('east')
 
 const $gameCont = document.querySelector('.game-container')
 $gameCont.appendChild($mustang)
