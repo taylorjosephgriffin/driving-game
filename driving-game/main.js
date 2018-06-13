@@ -13,32 +13,39 @@ class Car {
     switch (this.direction) {
       case 'north':
         this.location[1] -= this.speed
-        this.$img.style.marginTop = `${this.location[1]}px`
-        this.$img.style.marginLeft = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        this.$img.style.left = `${this.location[0]}px`
         break
       case 'south':
         this.location[1] += this.speed
-        this.$img.style.marginTop = `${this.location[1]}px`
-        this.$img.style.marginLeft = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        this.$img.style.left = `${this.location[0]}px`
         break
       case 'east':
         this.location[0] += this.speed
-        this.$img.style.marginLeft = `${this.location[0]}px`
-        this.$img.style.marginTop = `${this.location[1]}px`
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
         break
       case 'west':
         this.location[0] -= this.speed
-        this.$img.style.marginLeft = `${this.location[0]}px`
-        this.$img.style.marginTop = `${this.location[1]}px`
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
         break
       }
+  }
+  start() {
+    const car = this
+    setInterval(function () {
+      car.move()
+    }, 16)
   }
 }
 
 const $mustang = document.createElement('img')
 $mustang.setAttribute('src', 'images/car1.png')
 
-let mustang = new Car($mustang, 2, 'east', [0, 0])
+let mustang = new Car($mustang, 5, 'east', [0, 0])
+mustang.$img.setAttribute('style', 'position: relative')
 
 $mustang.classList.add(mustang.direction)
 
