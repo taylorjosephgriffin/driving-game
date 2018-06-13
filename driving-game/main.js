@@ -35,9 +35,12 @@ class Car {
   }
   start() {
     const car = this
-    setInterval(function () {
+    window.interval = setInterval(function () {
       car.move()
     }, 16)
+  }
+  stop() {
+    clearInterval(window.interval)
   }
 }
 
