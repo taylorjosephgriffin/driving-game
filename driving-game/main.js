@@ -6,6 +6,7 @@ class Car {
     this.location = location
   }
   turn(direction) {
+    this.direction = direction
     this.$img.className = direction
   }
 }
