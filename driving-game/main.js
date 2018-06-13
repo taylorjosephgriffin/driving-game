@@ -69,3 +69,10 @@ document.body.addEventListener('keydown', function (event) {
       break
   }
 })
+
+document.body.addEventListener('keydown', function (event) {
+  const key = event.keyCode
+  if (key === 32) {
+    mustang.start()
+  }
+})
