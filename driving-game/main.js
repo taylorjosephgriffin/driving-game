@@ -73,9 +73,16 @@ document.body.addEventListener('keydown', function (event) {
   }
 })
 
+let isRunning = false
+
 document.body.addEventListener('keydown', function (event) {
   const key = event.keyCode
-  if (key === 32) {
+  if (key === 32 && !isRunning) {
+    isRunning = true
     mustang.start()
+  }
+  else if (key === 32 && isRunning) {
+    isRunning = false
+    mustang.stop()
   }
 })
