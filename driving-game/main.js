@@ -1,8 +1,8 @@
-const $img = document.createElement('img')
-$img.setAttribute('src', 'images/car1.png')
+const $mustang = document.createElement('img')
+$mustang.setAttribute('src', 'images/car1.png')
 
 const $gameCont = document.querySelector('.game-container')
-$gameCont.appendChild($img)
+$gameCont.appendChild($mustang)
 
 class Car {
   constructor($img, speed, direction, location) {
@@ -12,3 +12,5 @@ class Car {
     this.location = location
   }
 }
+
+let mustang = new Car($mustang, 2, 'east', [0, 0])
