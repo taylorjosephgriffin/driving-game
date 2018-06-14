@@ -32,6 +32,30 @@ class Car {
         this.$img.style.left = `${this.location[0]}px`
         this.$img.style.top = `${this.location[1]}px`
         break
+      case 'northeast':
+        this.location[0] += this.speed
+        this.location[1] -= this.speed
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        break
+      case 'northwest':
+        this.location[0] -= this.speed
+        this.location[1] -= this.speed
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        break
+      case 'southwest':
+        this.location[0] -= this.speed
+        this.location[1] += this.speed
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        break
+      case 'southeast':
+        this.location[0] += this.speed
+        this.location[1] += this.speed
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        break
       }
   }
   start() {
