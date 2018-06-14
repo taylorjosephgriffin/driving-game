@@ -33,26 +33,26 @@ class Car {
         this.$img.style.top = `${this.location[1]}px`
         break
       case 'northeast':
-        this.location[0] += this.speed
-        this.location[1] -= this.speed
+        this.location[0] += this.speed - 1
+        this.location[1] -= this.speed - 1
         this.$img.style.left = `${this.location[0]}px`
         this.$img.style.top = `${this.location[1]}px`
         break
       case 'northwest':
-        this.location[0] -= this.speed
-        this.location[1] -= this.speed
+        this.location[0] -= this.speed - 1
+        this.location[1] -= this.speed - 1
         this.$img.style.left = `${this.location[0]}px`
         this.$img.style.top = `${this.location[1]}px`
         break
       case 'southwest':
-        this.location[0] -= this.speed
-        this.location[1] += this.speed
+        this.location[0] -= this.speed - 1
+        this.location[1] += this.speed - 1
         this.$img.style.left = `${this.location[0]}px`
         this.$img.style.top = `${this.location[1]}px`
         break
       case 'southeast':
-        this.location[0] += this.speed
-        this.location[1] += this.speed
+        this.location[0] += this.speed - 1
+        this.location[1] += this.speed - 1
         this.$img.style.left = `${this.location[0]}px`
         this.$img.style.top = `${this.location[1]}px`
         break
@@ -72,7 +72,7 @@ class Car {
 const $mustang = document.createElement('img')
 $mustang.setAttribute('src', 'images/car1.png')
 
-let mustang = new Car($mustang, 3, 'east', [250, -100], false)
+let mustang = new Car($mustang, 5, 'east', [500, -100], false)
 mustang.$img.setAttribute('style', 'position: relative')
 mustang.$img.style.top = '-100px'
 mustang.$img.style.left = '40%'
@@ -112,22 +112,25 @@ document.body.addEventListener('keydown', function (event) {
   }
 })
 
-var map = {}
-document.body.addEventListener('keydown', document.onkeyup = function (event) {
-  map[event.keyCode] = (event.type === 'keydown')
-  if (map[38] && map[39]) {
+var keysPressed = {}
+function steer(event) {
+  keysPressed[event.keyCode] = (event.type === 'keydown')
+  if (keysPressed[38] && keysPressed[39]) {
     mustang.turn('northeast')
   }
-  else if (map[37] && map[38]) {
+  else if (keysPressed[37] && keysPressed[38]) {
     mustang.turn('northwest')
   }
-  else if (map[40] && map[37]) {
+  else if (keysPressed[40] && keysPressed[37]) {
     mustang.turn('southwest')
   }
-  else if (map[39] && map[40]) {
+  else if (keysPressed[39] && keysPressed[40]) {
     mustang.turn('southeast')
   }
-})
+}
+
+document.addEventListener('keydown', steer)
+document.addEventListener('keyup', steer)
 
 window.addEventListener('scroll', function (event) {
   window.scrollTo( 0, 0 );
