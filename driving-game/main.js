@@ -48,8 +48,10 @@ class Car {
 const $mustang = document.createElement('img')
 $mustang.setAttribute('src', 'images/car1.png')
 
-let mustang = new Car($mustang, 5, 'east', [0, 0], false)
+let mustang = new Car($mustang, 3, 'east', [250, -100], false)
 mustang.$img.setAttribute('style', 'position: relative')
+mustang.$img.style.top = '-100px'
+mustang.$img.style.left = '40%'
 
 $mustang.classList.add(mustang.direction)
 
