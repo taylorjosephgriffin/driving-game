@@ -133,5 +133,5 @@ document.addEventListener('keydown', steer)
 document.addEventListener('keyup', steer)
 
 window.addEventListener('scroll', function (event) {
-  window.scrollTo( 0, 0 );
+  window.scrollTo(0, 0);
 })
