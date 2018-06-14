@@ -111,3 +111,24 @@ document.body.addEventListener('keydown', function (event) {
     mustang.stop()
   }
 })
+
+var map = {}
+document.body.addEventListener('keydown', document.onkeyup = function (event) {
+  map[event.keyCode] = (event.type === 'keydown')
+  if (map[38] && map[39]) {
+    mustang.turn('northeast')
+  }
+  else if (map[37] && map[38]) {
+    mustang.turn('northwest')
+  }
+  else if (map[40] && map[37]) {
+    mustang.turn('southwest')
+  }
+  else if (map[39] && map[40]) {
+    mustang.turn('southeast')
+  }
+})
+
+window.addEventListener('scroll', function (event) {
+  window.scrollTo( 0, 0 );
+})
