@@ -32,6 +32,30 @@ class Car {
         this.$img.style.left = `${this.location[0]}px`
         this.$img.style.top = `${this.location[1]}px`
         break
+      case 'northeast':
+        this.location[0] += this.speed - 1
+        this.location[1] -= this.speed - 1
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        break
+      case 'northwest':
+        this.location[0] -= this.speed - 1
+        this.location[1] -= this.speed - 1
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        break
+      case 'southwest':
+        this.location[0] -= this.speed - 1
+        this.location[1] += this.speed - 1
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        break
+      case 'southeast':
+        this.location[0] += this.speed - 1
+        this.location[1] += this.speed - 1
+        this.$img.style.left = `${this.location[0]}px`
+        this.$img.style.top = `${this.location[1]}px`
+        break
       }
   }
   start() {
@@ -48,8 +72,10 @@ class Car {
 const $mustang = document.createElement('img')
 $mustang.setAttribute('src', 'images/car1.png')
 
-let mustang = new Car($mustang, 5, 'east', [0, 0], false)
+let mustang = new Car($mustang, 5, 'east', [500, -100], false)
 mustang.$img.setAttribute('style', 'position: relative')
+mustang.$img.style.top = '-100px'
+mustang.$img.style.left = '40%'
 
 $mustang.classList.add(mustang.direction)
 
@@ -84,4 +110,28 @@ document.body.addEventListener('keydown', function (event) {
     mustang.isRunning = false
     mustang.stop()
   }
+})
+
+var keysPressed = {}
+function steer(event) {
+  keysPressed[event.keyCode] = (event.type === 'keydown')
+  if (keysPressed[38] && keysPressed[39]) {
+    mustang.turn('northeast')
+  }
+  else if (keysPressed[37] && keysPressed[38]) {
+    mustang.turn('northwest')
+  }
+  else if (keysPressed[40] && keysPressed[37]) {
+    mustang.turn('southwest')
+  }
+  else if (keysPressed[39] && keysPressed[40]) {
+    mustang.turn('southeast')
+  }
+}
+
+document.addEventListener('keydown', steer)
+document.addEventListener('keyup', steer)
+
+window.addEventListener('scroll', function (event) {
+  window.scrollTo(0, 0);
 })

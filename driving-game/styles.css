@@ -1,10 +1,15 @@
+.background-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .game-container {
   width: 50%;
-  height: 500px;
+  height: 700px;
   margin-left: 25%;
   margin-top: 100px;
   border: 2px solid black;
-  border-radius: 10px;
 }
 
 .north {
@@ -21,4 +26,20 @@
 
 .east {
   transform: rotate(90deg);
+}
+
+.northeast {
+  transform: rotate(45deg);
+}
+
+.northwest {
+  transform: rotate(-45deg);
+}
+
+.southwest {
+  transform: rotate(-135deg);
+}
+
+.southeast {
+  transform: rotate(135deg);
 }
